@@ -216,20 +216,19 @@ Parser.prototype._flush = function(done) {
         var localeBase = path.resolve( self.base, self.output, '' );
 
         for (var namespace in translationsHash) {
-
+            console.log(namespace);
             // get previous version of the files
             var prefix = self.prefix.replace( '$LOCALE', locale );
             var suffix = self.suffix.replace( '$LOCALE', locale );
-            namespace = namespace.replace( '$LOCALE', locale );
             var extension = self.extension.replace( '$LOCALE', locale );
 
             var namespacePath = path.resolve(
                 localeBase,
-                prefix + namespace + suffix + extension
+                prefix + locale + suffix + extension
             );
             var namespaceOldPath = path.resolve(
                 localeBase,
-                prefix + namespace + suffix + '_old' + extension
+                prefix + locale + suffix + '_old_' + locale + extension
             );
 
             if ( fs.existsSync( namespacePath ) ) {
