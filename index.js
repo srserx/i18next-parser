@@ -213,13 +213,14 @@ Parser.prototype._flush = function(done) {
     // =================================
     for (var i in self.locales) {
         var locale     = self.locales[i];
-        var localeBase = path.resolve( self.base, self.output, locale );
+        var localeBase = path.resolve( self.base, self.output, '' );
 
         for (var namespace in translationsHash) {
 
             // get previous version of the files
             var prefix = self.prefix.replace( '$LOCALE', locale );
             var suffix = self.suffix.replace( '$LOCALE', locale );
+            namespace = namespace.replace( '$LOCALE', locale );
             var extension = self.extension.replace( '$LOCALE', locale );
 
             var namespacePath = path.resolve(
